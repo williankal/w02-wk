@@ -80,7 +80,7 @@ public class Animal {
    * @return the name, never {@code null} and never blank
    */
   public String name() {
-    throw new UnsupportedOperationException("TODO: implement name()");
+    return name;
   }
 
   /**
@@ -89,7 +89,7 @@ public class Animal {
    * @return the species, never {@code null}
    */
   public Species species() {
-    throw new UnsupportedOperationException("TODO: implement species()");
+    return species;
   }
 
   /**
@@ -98,7 +98,7 @@ public class Animal {
    * @return the age, never {@code null}
    */
   public AgeMonths age() {
-    throw new UnsupportedOperationException("TODO: implement age()");
+    return age;
   }
 
   /**
@@ -111,7 +111,7 @@ public class Animal {
    * @return the intake date, never {@code null}
    */
   public LocalDate intakeDate() {
-    throw new UnsupportedOperationException("TODO: implement intakeDate()");
+    return intakeDate;
   }
 
   /**
@@ -131,6 +131,6 @@ public class Animal {
    */
   @Override
   public String toString() {
-    throw new UnsupportedOperationException("TODO: implement toString()");
+    return name + " (" + species + ", " + age + ", intake " + intakeDate + ")";
   }
 }
