@@ -53,7 +53,25 @@ public class Animal {
    * @throws IntakeException if any argument is {@code null}, or if {@code name} is blank
    */
   public Animal(String name, Species species, AgeMonths age, LocalDate intakeDate) {
-    throw new UnsupportedOperationException("TODO: validate the arguments and assign the fields");
+    if (name == null) {
+      throw new IntakeException("name must not be null");
+    }
+    if (name.isBlank()) {
+      throw new IntakeException("name must not be blank, was \"" + name + "\"");
+    }
+    if (species == null) {
+      throw new IntakeException("species must not be null");
+    }
+    if (age == null) {
+      throw new IntakeException("age must not be null");
+    }
+    if (intakeDate == null) {
+      throw new IntakeException("intake date must not be null");
+    }
+    this.name = name.strip();
+    this.species = species;
+    this.age = age;
+    this.intakeDate = intakeDate;
   }
 
   /**
