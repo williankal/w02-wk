@@ -16,6 +16,9 @@ public final class AgeMonths {
   /** The oldest age this shelter will record: 40 years. */
   public static final int MAX_MONTHS = 480;
 
+  /** The number of months in one year. */
+  private static final int MONTHS_PER_YEAR = 12;
+
   private final int months;
 
   /**
@@ -68,7 +71,7 @@ public final class AgeMonths {
    * @return the number of complete years, never negative
    */
   public int years() {
-    throw new UnsupportedOperationException("TODO: implement years()");
+    return months / MONTHS_PER_YEAR;
   }
 
   /**
@@ -79,7 +82,7 @@ public final class AgeMonths {
    * @return a value in the range 0 to 11 inclusive
    */
   public int remainderMonths() {
-    throw new UnsupportedOperationException("TODO: implement remainderMonths()");
+    return months % MONTHS_PER_YEAR;
   }
 
   /**
@@ -88,7 +91,7 @@ public final class AgeMonths {
    * @return {@code true} if this age is less than twelve months
    */
   public boolean isUnderOneYear() {
-    throw new UnsupportedOperationException("TODO: implement isUnderOneYear()");
+    return months < MONTHS_PER_YEAR;
   }
 
   /**
@@ -114,6 +117,24 @@ public final class AgeMonths {
    */
   @Override
   public String toString() {
-    throw new UnsupportedOperationException("TODO: implement toString()");
+    if (isUnderOneYear()) {
+      return count(months, "month");
+    }
+    String yearsPart = count(years(), "year");
+    if (remainderMonths() == 0) {
+      return yearsPart;
+    }
+    return yearsPart + ", " + count(remainderMonths(), "month");
+  }
+
+  /**
+   * Formats a quantity with its unit, pluralising the unit unless the quantity is exactly one.
+   *
+   * @param n the quantity
+   * @param unit the singular form of the unit, such as {@code "year"}
+   * @return for example {@code "1 year"} or {@code "2 years"}
+   */
+  private static String count(int n, String unit) {
+    return n + " " + (n == 1 ? unit : unit + "s");
   }
 }
